@@ -132,6 +132,7 @@ export function GallerySection() {
           <div className="grid grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-6">
             {filtered.map((item) => (
               <button
+                type='button'
                 key={item.id}
                 className="group cursor-pointer overflow-hidden rounded-3xl border-2 border-blue-100 bg-white shadow-xl shadow-navy-900/5 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl hover:shadow-navy-900/10 active:scale-[0.99]"
                 onClick={() => handleOpenLightbox(item)}

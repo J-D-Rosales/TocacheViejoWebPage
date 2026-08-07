@@ -16,6 +16,7 @@ export function ContactHero({ setPage }: ContactHeroProps) {
       <div className="relative mx-auto w-full max-w-[1280px] px-[clamp(16px,4vw,48px)] pb-11">
         <div className="mb-3 text-[0.82rem] font-bold tracking-wide text-white/50">
           <button
+            type="button"
             className="cursor-pointer"
             onClick={() => {
               setPage('home')

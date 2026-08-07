@@ -52,7 +52,12 @@ export function LightboxModal({ galleryItem, media, onClose }: LightboxModalProp
 return (
   <div 
     className="fixed inset-0 z-[2000] flex items-center justify-center p-6 bg-navy-900/90"
-    onClick={onClose}
+    onClick={(e) => {
+      // Only close if clicking directly on the backdrop, not its children
+      if (e.target === e.currentTarget) {
+        onClose();
+      }
+    }}
   >
     {/* Layer 1: blurred copy of the same media covering the whole backdrop */}
     {current?.url && (
@@ -80,7 +85,6 @@ return (
 
     {/* Foreground card */}
     <div 
-      onClick={(e) => e.stopPropagation()}
       className="relative flex max-h-[90vh] w-full max-w-[90vw] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-blue-900/30"
     >
       <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden bg-white">

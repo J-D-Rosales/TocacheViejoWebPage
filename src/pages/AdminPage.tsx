@@ -851,13 +851,11 @@ function AdminDashboard() {
             <div>
               <FieldLabel>Fotos / Videos (puedes elegir varios) *</FieldLabel>
               <label
-                onClick={() => fileInputRef.current?.click()}
                 className={`cursor-pointer rounded-2xl border-2 border-dashed p-[22px] text-center transition-colors duration-200 hover:border-navy-800 ${
                   evtFiles.length > 0 ? 'border-green-300 bg-green-50' : 'border-slate-300 bg-slate-50'
                 }`}
               >
                 <input
-                  ref={fileInputRef}
                   type="file"
                   accept="image/*,video/*"
                   multiple
