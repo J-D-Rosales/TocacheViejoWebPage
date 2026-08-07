@@ -48,6 +48,7 @@ export function Navbar({ currentPage, setPage }: NavbarProps) {
       <div className="mx-auto flex h-[68px] max-w-[1280px] items-center">
         {/* Logo */}
         <button
+          type='button'
           onClick={() => handlePageChange('home')}
           className="flex shrink-0 cursor-pointer items-center gap-3 border-0 bg-transparent p-0"
         >
@@ -68,6 +69,7 @@ export function Navbar({ currentPage, setPage }: NavbarProps) {
         <div className="ml-auto mr-5 hidden items-center gap-7 md:flex">
           {links.map((l) => (
             <button
+              type='button'
               key={l.page}
               onClick={() => handlePageChange(l.page)}
               className={`cursor-pointer border-0 bg-transparent ${linkClass(l.page)}`}
@@ -82,6 +84,7 @@ export function Navbar({ currentPage, setPage }: NavbarProps) {
           {/* Discrete Staff / Admin button — only entry point for login */}
           <button
             id="navbar-admin-btn"
+            type='button'
             onClick={() => handlePageChange('admin')}
             title="Acceso para Personal Docente"
             aria-label="Portal Administrativo"
@@ -96,6 +99,7 @@ export function Navbar({ currentPage, setPage }: NavbarProps) {
 
           {/* Enroll CTA */}
           <button
+            type='button'
             onClick={() => handlePageChange('contact')}
             className="cursor-pointer rounded-full border-b-4 border-crimson-700 bg-crimson-600 px-[18px] py-[9px] text-[0.82rem] font-extrabold uppercase tracking-[0.04em] text-white shadow-xl shadow-crimson-700/30 transition-all duration-300 hover:scale-[1.03] hover:from-crimson-500 hover:to-crimson-600 active:scale-95"
           >
@@ -104,6 +108,7 @@ export function Navbar({ currentPage, setPage }: NavbarProps) {
 
           {/* Mobile hamburger */}
           <button
+            type='button'
             onClick={() => setMobileOpen(!mobileOpen)}
             className="ml-2 cursor-pointer border-0 bg-transparent text-white md:hidden"
             aria-label="Alternar menú de navegación"
@@ -124,6 +129,7 @@ export function Navbar({ currentPage, setPage }: NavbarProps) {
         <div className="border-t border-white/10 bg-navy-900 px-6 pb-5 pt-4 md:hidden">
           {links.map((l) => (
             <button
+              type='button'
               key={l.page}
               onClick={() => handlePageChange(l.page)}
               className={`block w-full cursor-pointer border-0 border-b border-white/5 bg-transparent py-3 text-left text-[1rem] tracking-wide ${
@@ -135,6 +141,7 @@ export function Navbar({ currentPage, setPage }: NavbarProps) {
           ))}
           {/* Single staff-only entry point in mobile menu too */}
           <button
+            type='button'
             onClick={() => handlePageChange('admin')}
             className={`block w-full cursor-pointer border-0 bg-transparent py-3 text-left text-[0.85rem] font-semibold ${
               isAdmin ? 'text-gold-400' : 'text-white/35'

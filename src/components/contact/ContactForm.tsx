@@ -78,6 +78,7 @@ ${formData.message || 'Sin mensaje adicional'}`
             Hemos redirigido tu consulta a nuestro WhatsApp. Si la ventana no se abrió, por favor contáctanos directamente al <strong>+51 900 000 858</strong>.
           </p>
           <button
+            type='button'
             onClick={handleReset}
             className="cursor-pointer rounded-full border-b-4 border-navy-900 bg-gradient-to-r from-navy-800 to-navy-700 px-6 py-3 text-[0.88rem] font-extrabold tracking-wide text-gold-400 shadow-xl shadow-navy-900/20 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:from-navy-700 hover:to-navy-800 active:scale-95"
           >
@@ -90,27 +91,28 @@ ${formData.message || 'Sin mensaje adicional'}`
             <div>
               <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
                 Nombre del Apoderado *
+                <input
+                  type="text"
+                  required
+                  value={formData.fullName}
+                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  placeholder="Ej. María Sánchez"
+                  className={inputClass}
+                />
               </label>
-              <input
-                type="text"
-                required
-                value={formData.fullName}
-                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                placeholder="Ej. María Sánchez"
-                className={inputClass}
-              />
+
             </div>
             <div>
               <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
                 Correo Electrónico
-              </label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="Ej. maria@correo.com"
-                className={inputClass}
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="Ej. maria@correo.com"
+                  className={inputClass}
               />
+              </label>
             </div>
           </div>
 
@@ -118,24 +120,23 @@ ${formData.message || 'Sin mensaje adicional'}`
             <div>
               <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
                 Teléfono / Celular
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="999 999 999"
+                  className={inputClass}
+                />
               </label>
-              <input
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="999 999 999"
-                className={inputClass}
-              />
             </div>
             <div>
               <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
                 Grado de Interés
-              </label>
-              <select
-                value={formData.gradeLevel}
-                onChange={(e) => setFormData({ ...formData, gradeLevel: e.target.value as any })}
-                className={`${inputClass} cursor-pointer bg-white`}
-              >
+                <select
+                  value={formData.gradeLevel}
+                  onChange={(e) => setFormData({ ...formData, gradeLevel: e.target.value as any })}
+                  className={`${inputClass} cursor-pointer bg-white`}
+                >
                 <option value="">Seleccione el grado...</option>
                 <option value="Primaria 1° grado">Primer grado de primaria</option>
                 <option value="Primaria 2° grado">Segundo grado de primaria</option>
@@ -144,33 +145,34 @@ ${formData.message || 'Sin mensaje adicional'}`
                 <option value="Primaria 5° grado">Quinto grado de primaria</option>
                 <option value="Primaria 6° grado">Sexto grado de primaria</option>
               </select>
+              </label>
             </div>
           </div>
 
           <div>
             <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
               Nombre del Estudiante
+              <input
+                type="text"
+                value={formData.studentName}
+                onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
+                placeholder="Ej. Juanito Pérez"
+                className={inputClass}
+              />
             </label>
-            <input
-              type="text"
-              value={formData.studentName}
-              onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
-              placeholder="Ej. Juanito Pérez"
-              className={inputClass}
-            />
           </div>
 
           <div>
             <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
               Mensaje o Consultas Específicas
+              <textarea
+                rows={4}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                placeholder="Por favor comparta cualquier duda sobre currículo, matrículas, costos o traslados..."
+                className={`${inputClass} resize-y`}
+              />
             </label>
-            <textarea
-              rows={4}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              placeholder="Por favor comparta cualquier duda sobre currículo, matrículas, costos o traslados..."
-              className={`${inputClass} resize-y`}
-            />
           </div>
 
           <button

@@ -38,6 +38,7 @@ export function HeroSection({ setPage }: HeroSectionProps) {
 
           <div className="flex flex-wrap gap-3.5">
             <button
+              type="button"
               onClick={() => {
                 setPage('contact')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -47,6 +48,7 @@ export function HeroSection({ setPage }: HeroSectionProps) {
               QUIERO MATRICULARME
             </button>
             <button
+              type="button"
               className="cursor-pointer rounded-full border-2 border-white/60 bg-white/10 px-8 py-4 text-[0.95rem] font-bold tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-gold-400 hover:bg-white/15 hover:text-gold-400 active:scale-95"
               onClick={() =>
                 document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })

@@ -5,7 +5,7 @@ import { AwardsSection } from '../components/home/AwardsSection'
 import { CtaBanner } from '../components/home/CtaBanner'
 
 interface HomePageProps {
-  setPage: (p: Page) => void
+  readonly setPage: (p: Page) => void
 }
 
 export function HomePage({ setPage }: HomePageProps) {

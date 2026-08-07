@@ -34,8 +34,8 @@ export function ContactInfoGrid() {
             {card.title}
           </h3>
           <div className="mb-4 text-[0.9rem] leading-loose tracking-wide text-slate-600">
-            {card.lines.map((line, idx) => (
-              <div key={idx}>{line}</div>
+            {card.lines.map((line) => (
+              <div key={line}>{line}</div>
             ))}
           </div>
           <span className="inline-block rounded-full border-2 border-navy-800/15 bg-navy-800/5 px-3 py-1 text-[0.74rem] font-extrabold tracking-wide text-navy-800">

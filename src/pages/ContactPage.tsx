@@ -5,7 +5,7 @@ import { ContactForm } from '../components/contact/ContactForm'
 import { FaqAccordion } from '../components/contact/FaqAccordion'
 
 interface ContactPageProps {
-  setPage: (p: Page) => void
+  readonly setPage: (p: Page) => void
 }
 
 export function ContactPage({ setPage }: ContactPageProps) {

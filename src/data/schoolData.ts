@@ -25,24 +25,29 @@ export const milestones: Milestone[] = [
 
 export const faqs: FaqItem[] = [
   {
+    id: 'admission-requirements',
     q: '¿Cuáles son los requisitos de admisión para nuevos estudiantes?',
     a: 'Se debe presentar la partida de nacimiento, copia de DNI del estudiante y padres, certificados de estudios anteriores y ficha única de matrícula. Para mayores informes puede escribir al número de whatshap 928462955',
   },
   {
+    id: 'educational-levels',
     q: '¿Qué niveles educativos ofrece I.E. Tocache Viejo?',
     a: 'Ofrecemos los seis grados de la Educación Primaria.',
   },
   {
+    id: 'schedule',
     q: '¿Cuál es el horario escolar de clases?',
     a: 'Las clases se desarrollan de lunes a viernes 8:00 AM a 1:00 PM en jornada escolar completa.',
   },
   {
+    id: 'extracurricular-workshops',
     q: '¿El colegio ofrece talleres extracurriculares?',
     a: 'Sí — contamos con talleres de fútbol, vóley y taller de ajedrez.',
   },
   {
+    id: 'enrollment-process',
     q: '¿Cómo es el proceso de matrícula?',
-    a: 'El proceso de matrícula se realiza de manera presencial en la dirección o coordinando con la directora en con su número de telefono.',
+    a: 'El proceso de matrícula se realiza de manera presencial en la dirección o coordinando con la directora con su número de teléfono.',
   },
 ]
 

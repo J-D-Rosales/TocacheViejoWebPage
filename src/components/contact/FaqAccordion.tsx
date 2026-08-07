@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { faqs } from '../../data/schoolData'
 
 export function FaqAccordion() {
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
+  const [openFaq, setOpenFaq] = useState<string | null>(null)
 
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index)
+  const toggleFaq = (id: string) => {
+    setOpenFaq(openFaq === id ? null : id)
   }
 
   return (
@@ -20,17 +20,18 @@ export function FaqAccordion() {
       </div>
 
       <div className="mx-auto grid max-w-[860px] gap-4">
-        {faqs.map((faq, idx) => {
-          const isOpen = openFaq === idx
+        {faqs.map((faq) => {
+          const isOpen = openFaq === faq.id
           return (
             <div
-              key={idx}
+              key={faq.id}
               className={`overflow-hidden rounded-2xl border-2 border-blue-100 bg-white transition-all duration-300 ${
                 isOpen ? 'shadow-xl shadow-navy-900/10' : 'shadow-none'
               }`}
             >
               <button
-                onClick={() => toggleFaq(idx)}
+                type='button'
+                onClick={() => toggleFaq(faq.id)}
                 className="flex w-full cursor-pointer items-center justify-between gap-4 border-0 bg-transparent px-6 py-[18px] text-left"
               >
                 <span className="font-serif text-[1.05rem] font-extrabold text-navy-800">

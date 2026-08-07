@@ -5,7 +5,7 @@ import { PrincipalMessageSection } from '../components/about/PrincipalMessageSec
 import { TimelineSection } from '../components/about/TimelineSection'
 
 interface AboutPageProps {
-  setPage: (p: Page) => void
+  readonly setPage: (p: Page) => void
 }
 
 export function AboutPage({ setPage }: AboutPageProps) {

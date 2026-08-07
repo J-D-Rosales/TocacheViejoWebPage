@@ -6,7 +6,7 @@ import { apiService } from '../services/apiService'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function FieldLabel({ children }: { children: ReactNode }) {
+function FieldLabel({ children }: {readonly children: ReactNode }) {
   return (
     <label className="mb-[5px] block text-[0.85rem] font-extrabold uppercase tracking-[0.1em] text-navy-800">
       {children}
@@ -24,11 +24,11 @@ function TextInput({
   type = 'text',
   required,
 }: {
-  value: string
-  onChange: (v: string) => void
-  placeholder?: string
-  type?: string
-  required?: boolean
+  readonly value: string
+  readonly onChange: (v: string) => void
+  readonly placeholder?: string
+  readonly type?: string
+  readonly required?: boolean
 }) {
   return (
     <input
@@ -48,10 +48,10 @@ function TextArea({
   placeholder,
   rows = 3,
 }: {
-  value: string
-  onChange: (v: string) => void
-  placeholder?: string
-  rows?: number
+  readonly value: string
+  readonly onChange: (v: string) => void
+  readonly placeholder?: string
+  readonly rows?: number
 }) {
   return (
     <textarea
@@ -70,10 +70,10 @@ function Select({
   children,
   required,
 }: {
-  value: number | string
-  onChange: (v: number | string) => void
-  children: ReactNode
-  required?: boolean
+  readonly value: number | string
+  readonly onChange: (v: number | string) => void
+  readonly children: ReactNode
+  readonly required?: boolean
 }) {
   return (
     <select
@@ -127,10 +127,10 @@ function PanelHeader({
   onRefresh,
   refreshing,
 }: {
-  icon: ReactNode
-  title: string
-  onRefresh?: () => void
-  refreshing?: boolean
+  readonly icon: ReactNode
+  readonly title: string
+  readonly onRefresh?: () => void
+  readonly refreshing?: boolean
 }) {
   return (
     <div className="flex items-center justify-between gap-2.5 bg-gradient-to-r from-navy-800 to-navy-700 px-7 py-[18px]">
@@ -142,6 +142,7 @@ function PanelHeader({
       </div>
       {onRefresh && (
         <button
+          type='button'
           onClick={onRefresh}
           disabled={refreshing}
           className="cursor-pointer rounded-full border-2 border-white/25 bg-white/10 px-3 py-1.5 text-[0.8rem] font-bold tracking-wide text-white transition-all duration-200 hover:scale-105 hover:bg-white/20 active:scale-95 disabled:cursor-wait"
@@ -156,15 +157,8 @@ function PanelHeader({
 // ─── Login Form ───────────────────────────────────────────────────────────────
 
 interface LoginFormProps {
-  setPage: (p: Page) => void
+  readonly setPage: (p: Page) => void
 }
-
-function LoginForm({ setPage }: LoginFormProps) {
-  const { login } = useAuth()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
   function mapCognitoError(err: unknown): string {
     const message = err instanceof Error ? err.message : String(err)
@@ -183,6 +177,14 @@ function LoginForm({ setPage }: LoginFormProps) {
     }
     return 'Error al iniciar sesión. Inténtalo de nuevo.'
   }
+
+function LoginForm({ setPage }: LoginFormProps) {
+  const { login } = useAuth()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -276,7 +278,7 @@ function LoginForm({ setPage }: LoginFormProps) {
             {loading ? (
               <>
                 <span className="inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
-                Verificando...
+                <span>Verificando...</span>
               </>
             ) : (
               'Acceder al Portal'
@@ -322,6 +324,16 @@ function AwardsManager({ idToken }: AwardsManagerProps) {
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [submitSuccess, setSubmitSuccess] = useState<string | null>(null)
   const [deleteLoadingId, setDeleteLoadingId] = useState<string | null>(null)
+
+  let buttonText: string
+
+  if (submitting) {
+    buttonText = 'Guardando...'
+  } else if (editingId) {
+    buttonText = 'Guardar Cambios'
+  } else {
+    buttonText = '+ Crear Premio'
+  }
 
   const loadAwards = useCallback(async () => {
     setLoading(true)
@@ -489,7 +501,7 @@ function AwardsManager({ idToken }: AwardsManagerProps) {
                   : 'border-b-4 border-navy-900 bg-gradient-to-r from-navy-800 to-navy-700 text-gold-400 shadow-xl shadow-navy-900/20'
               }`}
             >
-              {submitting ? 'Guardando...' : editingId ? 'Guardar Cambios' : '+ Crear Premio'}
+              {buttonText}
             </button>
             {editingId && (
               <button
@@ -838,7 +850,7 @@ function AdminDashboard() {
             {/* File picker (múltiple) */}
             <div>
               <FieldLabel>Fotos / Videos (puedes elegir varios) *</FieldLabel>
-              <div
+              <label
                 onClick={() => fileInputRef.current?.click()}
                 className={`cursor-pointer rounded-2xl border-2 border-dashed p-[22px] text-center transition-colors duration-200 hover:border-navy-800 ${
                   evtFiles.length > 0 ? 'border-green-300 bg-green-50' : 'border-slate-300 bg-slate-50'
@@ -890,7 +902,7 @@ function AdminDashboard() {
                     </div>
                   </div>
                 )}
-              </div>
+              </label>
             </div>
 
             {/* Feedback */}

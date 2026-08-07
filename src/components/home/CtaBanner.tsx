@@ -1,7 +1,7 @@
 import type { Page } from '../../types'
 
 interface CtaBannerProps {
-  setPage: (p: Page) => void
+ setPage: (p: Page) => void
 }
 
 export function CtaBanner({ setPage }: CtaBannerProps) {
@@ -19,6 +19,7 @@ export function CtaBanner({ setPage }: CtaBannerProps) {
           </p>
         </div>
         <button
+          type='button'
           onClick={() => {
             setPage('contact')
             window.scrollTo({ top: 0, behavior: 'smooth' })

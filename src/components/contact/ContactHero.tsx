@@ -1,7 +1,7 @@
 import type { Page } from '../../types'
 
 interface ContactHeroProps {
-  setPage: (p: Page) => void
+ setPage: (p: Page) => void
 }
 
 export function ContactHero({ setPage }: ContactHeroProps) {
@@ -15,7 +15,7 @@ export function ContactHero({ setPage }: ContactHeroProps) {
       <div className="absolute inset-0 bg-gradient-to-br from-navy-900/95 to-navy-800/80" />
       <div className="relative mx-auto w-full max-w-[1280px] px-[clamp(16px,4vw,48px)] pb-11">
         <div className="mb-3 text-[0.82rem] font-bold tracking-wide text-white/50">
-          <span
+          <button
             className="cursor-pointer"
             onClick={() => {
               setPage('home')
@@ -23,7 +23,7 @@ export function ContactHero({ setPage }: ContactHeroProps) {
             }}
           >
             Inicio  
-          </span>
+          </button>
           <span className="mx-2">›</span>
           <span className="text-gold-400">Admisiones y Contacto</span>
         </div>

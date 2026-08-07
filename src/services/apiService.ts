@@ -11,9 +11,14 @@ import type {
  * Base URL de la API del colegio Tocache Viejo.
  * Configurada vía VITE_API_BASE_URL (ver .env.example).
  */
-const API_BASE_URL = String(
-  import.meta.env.VITE_API_BASE_URL || 'https://api.tocacheviejo.edu.pe/v1',
-).replace(/\/+$/, '')
+let API_BASE_URL = String(
+  import.meta.env.VITE_API_BASE_URL ||
+    'https://api.tocacheviejo.edu.pe/v1',
+)
+
+while (API_BASE_URL.endsWith('/')) {
+  API_BASE_URL = API_BASE_URL.slice(0, -1)
+}
 
 async function toJson<T>(res: Response): Promise<T> {
   if (!res.ok) {
@@ -24,7 +29,8 @@ async function toJson<T>(res: Response): Promise<T> {
     } catch {
       detail = res.statusText
     }
-    throw new Error(`HTTP ${res.status}${detail ? `: ${detail}` : ''}`)
+    const errorDetail = detail ? `: ${detail}` : ''
+    throw new Error(`HTTP ${res.status}${errorDetail}`)
   }
   const text = await res.text()
   return (text ? JSON.parse(text) : undefined) as T

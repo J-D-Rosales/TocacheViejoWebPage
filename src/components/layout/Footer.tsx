@@ -44,6 +44,7 @@ export function Footer({ setPage }: FooterProps) {
               { label: 'Admisiones y Contacto', page: 'contact' as Page },
             ].map((l) => (
               <button
+                type="button"
                 key={l.label}
                 onClick={() => handleNav(l.page)}
                 className="block cursor-pointer border-0 bg-transparent py-[5px] text-left text-[0.9rem] font-medium tracking-wide text-white/65 transition-all duration-200 hover:translate-x-1 hover:text-gold-400"

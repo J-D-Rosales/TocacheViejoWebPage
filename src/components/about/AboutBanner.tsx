@@ -1,7 +1,7 @@
 import type { Page } from '../../types'
 
 interface AboutBannerProps {
-  setPage: (p: Page) => void
+ setPage: (p: Page) => void
 }
 
 export function AboutBanner({ setPage }: AboutBannerProps) {
@@ -18,7 +18,7 @@ export function AboutBanner({ setPage }: AboutBannerProps) {
       <div className="absolute top-0 right-0 h-[300px] w-[300px] translate-x-[20%] -translate-y-[20%] rounded-full border border-gold-400/5" />
       <div className="relative mx-auto w-full max-w-[1280px] px-[clamp(16px,4vw,48px)] pb-12">
         <div className="mb-3 text-[0.82rem] font-bold tracking-wide text-white/50">
-          <span
+          <button
             className="cursor-pointer"
             onClick={() => {
               setPage('home')
@@ -26,7 +26,7 @@ export function AboutBanner({ setPage }: AboutBannerProps) {
             }}
           >
             Inicio
-          </span>
+          </button>
           <span className="mx-2">›</span>
           <span className="text-gold-400">Sobre Nosotros</span>
         </div>

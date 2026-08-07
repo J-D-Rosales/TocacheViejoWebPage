@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useMemo, type ReactNode } from 'react'
 import {
   signIn,
   signOut,
@@ -33,12 +33,12 @@ function decodeJwtPayload(token: string): Record<string, unknown> | null {
   try {
     const [, payload] = token.split('.')
     if (!payload) return null
-    const normalized = payload.replace(/-/g, '+').replace(/_/g, '/')
+    const normalized = payload.replaceAll('-', '+').replaceAll('_', '/')
     const padded = normalized.padEnd(normalized.length + ((4 - (normalized.length % 4)) % 4), '=')
     const decoded = decodeURIComponent(
       atob(padded)
         .split('')
-        .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
+        .map((c) => `%${c.codePointAt(0)!.toString(16).padStart(2, '0')}`)
         .join(''),
     )
     return JSON.parse(decoded) as Record<string, unknown>
@@ -61,7 +61,7 @@ const AuthContext = createContext<AuthContextValue | null>(null)
 
 // ─── Provider ─────────────────────────────────────────────────────────────────
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: { readonly children: ReactNode }) {
   const [user, setUser] = useState<AdminUser | null>(null)
   const [idToken, setIdToken] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -119,17 +119,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIdToken(null)
   }, [])
 
+  const value = useMemo(
+  () => ({
+    user,
+    isAuthenticated: !!user,
+    idToken,
+    isLoading,
+    login,
+    logout,
+  }),
+  [user, idToken, isLoading, login, logout]
+  )
+
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isAuthenticated: !!user,
-        idToken,
-        isLoading,
-        login,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   )

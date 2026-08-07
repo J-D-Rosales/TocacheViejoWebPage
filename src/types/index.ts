@@ -29,6 +29,7 @@ export interface Milestone {
 }
 
 export interface FaqItem {
+  id: string
   q: string
   a: string
 }

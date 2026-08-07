@@ -3,10 +3,10 @@ import type { GalleryItem, GalleryMediaItem } from '../../types'
 
 interface LightboxModalProps {
   /** Metadatos del evento (título, año, descripción...) */
-  galleryItem: GalleryItem
+ galleryItem: GalleryItem
   /** Lista de medios navegables del evento */
-  media: GalleryMediaItem[]
-  onClose: () => void
+ media: GalleryMediaItem[]
+ onClose: () => void
 }
 
 export function LightboxModal({ galleryItem, media, onClose }: LightboxModalProps) {
@@ -49,117 +49,125 @@ export function LightboxModal({ galleryItem, media, onClose }: LightboxModalProp
     </div>
   )
 
-  return (
-    <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-navy-900 p-6" onClick={onClose}>
-      {/* Layer 1: blurred copy of the same media covering the whole backdrop */}
-      {current?.url && (
-        <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-          {isVideo ? (
+return (
+  <div 
+    className="fixed inset-0 z-[2000] flex items-center justify-center p-6 bg-navy-900/90"
+    onClick={onClose}
+  >
+    {/* Layer 1: blurred copy of the same media covering the whole backdrop */}
+    {current?.url && (
+      <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        {isVideo ? (
+          <video
+            key={currentKey}
+            src={current.url}
+            className="h-full w-full scale-[1.15] object-cover opacity-80 blur-[20px] brightness-[0.6]"
+            muted
+            autoPlay
+            loop
+            playsInline
+          />
+        ) : (
+          <img 
+            key={currentKey} 
+            src={current.url} 
+            alt="" 
+            className="h-full w-full scale-[1.15] object-cover opacity-80 blur-[20px] brightness-[0.6]" 
+          />
+        )}
+      </div>
+    )}
+
+    {/* Foreground card */}
+    <div 
+      onClick={(e) => e.stopPropagation()}
+      className="relative flex max-h-[90vh] w-full max-w-[90vw] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-blue-900/30"
+    >
+      <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden bg-white">
+        {!current ? (
+          placeholderBlock('Sin contenido multimedia')
+        ) : current.url ? (
+          isVideo ? (
             <video
               key={currentKey}
               src={current.url}
-              className="h-full w-full scale-[1.15] object-cover opacity-80 blur-[20px] brightness-[0.6]"
-              muted
+              controls
               autoPlay
-              loop
-              playsInline
+              className="block h-full w-full object-contain"
             />
           ) : (
-            <img key={currentKey} src={current.url} alt="" className="h-full w-full scale-[1.15] object-cover opacity-80 blur-[20px] brightness-[0.6]" />
-          )}
-        </div>
-      )}
-
-      {/* Foreground card: full media, never cropped */}
-      <div className="relative flex max-h-[90vh] w-full max-w-[90vw] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-blue-900/30" onClick={(e) => e.stopPropagation()}>
-        <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden bg-white">
-          {!current ? (
-            placeholderBlock('Sin contenido multimedia')
-          ) : current.url ? (
-            isVideo ? (
-              <video
-                key={currentKey}
-                src={current.url}
-                controls
-                autoPlay
-                className="block h-full w-full object-contain"
-              />
-            ) : (
-              <img
-                key={currentKey}
-                src={current.url}
-                alt={galleryItem.title}
-                className="mx-auto block h-auto w-auto max-h-full max-w-full object-contain"
-              />
-            )
-          ) : isVideo ? (
-            placeholderBlock('Sin video disponible', true)
-          ) : (
-            placeholderBlock('Sin imágenes disponibles')
-          )}
-        </div>
-
-        {/* Metadata (event name, description, date) */}
-        <div className="relative z-[2] shrink-0 bg-white px-7 py-6">
-          <div className="mb-2.5 flex flex-wrap items-center gap-2.5">
-            <span className="rounded-full bg-gradient-to-r from-navy-800 to-navy-700 px-3 py-1 text-[0.72rem] font-extrabold uppercase tracking-[0.1em] text-gold-400">
-              Año {galleryItem.year}
-            </span>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-[0.72rem] font-bold tracking-wide text-slate-600">
-              {galleryItem.category}
-            </span>
-            {isVideo && (
-              <span className="rounded-full bg-crimson-600 px-3 py-1 text-[0.72rem] font-extrabold tracking-wide text-white">
-                ▶ VIDEO EN VIVO
-              </span>
-            )}
-            <span className="ml-auto text-[0.8rem] font-semibold tracking-wide text-slate-400">
-              {galleryItem.date}
-            </span>
-          </div>
-
-          <h3 className="mt-0 mb-2 font-serif text-[1.35rem] font-extrabold text-navy-800">
-            {galleryItem.title}
-          </h3>
-
-          <p className="m-0 text-[0.92rem] leading-relaxed tracking-wide text-slate-600">
-            {galleryItem.desc}
-          </p>
-        </div>
-
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          aria-label="Cerrar modal"
-          className="absolute top-3.5 right-3.5 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border-2 border-white/20 bg-navy-900/85 text-[1.1rem] text-white transition-all duration-200 hover:scale-110 hover:bg-navy-900 active:scale-95"
-        >
-          ✕
-        </button>
-
-        {/* Prev button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            handlePrev()
-          }}
-          aria-label="Anterior"
-          className="absolute top-[35%] left-3.5 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-white/20 bg-navy-900/85 text-[1.2rem] text-white transition-all duration-200 hover:scale-110 hover:bg-navy-900 active:scale-95"
-        >
-          ‹
-        </button>
-
-        {/* Next button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            handleNext()
-          }}
-          aria-label="Siguiente"
-          className="absolute top-[35%] right-3.5 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-white/20 bg-navy-900/85 text-[1.2rem] text-white transition-all duration-200 hover:scale-110 hover:bg-navy-900 active:scale-95"
-        >
-          ›
-        </button>
+            <img
+              key={currentKey}
+              src={current.url}
+              alt={galleryItem.title}
+              className="mx-auto block h-auto w-auto max-h-full max-w-full object-contain"
+            />
+          )
+        ) : isVideo ? (
+          placeholderBlock('Sin video disponible', true)
+        ) : (
+          placeholderBlock('Sin imágenes disponibles')
+        )}
       </div>
+
+      {/* Metadata */}
+      <div className="relative z-[2] shrink-0 bg-white px-7 py-6">
+        <div className="mb-2.5 flex flex-wrap items-center gap-2.5">
+          <span className="rounded-full bg-gradient-to-r from-navy-800 to-navy-700 px-3 py-1 text-[0.72rem] font-extrabold uppercase tracking-[0.1em] text-gold-400">
+            Año {galleryItem.year}
+          </span>
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-[0.72rem] font-bold tracking-wide text-slate-600">
+            {galleryItem.category}
+          </span>
+          {isVideo && (
+            <span className="rounded-full bg-crimson-600 px-3 py-1 text-[0.72rem] font-extrabold tracking-wide text-white">
+              ▶ VIDEO EN VIVO
+            </span>
+          )}
+          <span className="ml-auto text-[0.8rem] font-semibold tracking-wide text-slate-400">
+            {galleryItem.date}
+          </span>
+        </div>
+
+        <h3 className="mt-0 mb-2 font-serif text-[1.35rem] font-extrabold text-navy-800">
+          {galleryItem.title}
+        </h3>
+
+        <p className="m-0 text-[0.92rem] leading-relaxed tracking-wide text-slate-600">
+          {galleryItem.desc}
+        </p>
+      </div>
+
+      {/* Close button */}
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Cerrar modal"
+        className="absolute top-3.5 right-3.5 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border-2 border-white/20 bg-navy-900/85 text-[1.1rem] text-white transition-all duration-200 hover:scale-110 hover:bg-navy-900 active:scale-95"
+      >
+        ✕
+      </button>
+
+      {/* Prev button */}
+      <button
+        type="button"
+        onClick={handlePrev}
+        aria-label="Anterior"
+        className="absolute top-[35%] left-3.5 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-white/20 bg-navy-900/85 text-[1.2rem] text-white transition-all duration-200 hover:scale-110 hover:bg-navy-900 active:scale-95"
+      >
+        ‹
+      </button>
+
+      {/* Next button */}
+      <button
+        type="button"
+        onClick={handleNext}
+        aria-label="Siguiente"
+        className="absolute top-[35%] right-3.5 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-white/20 bg-navy-900/85 text-[1.2rem] text-white transition-all duration-200 hover:scale-110 hover:bg-navy-900 active:scale-95"
+      >
+        ›
+      </button>
     </div>
-  )
+  </div>
+)
 }
