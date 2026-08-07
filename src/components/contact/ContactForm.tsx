@@ -90,7 +90,7 @@ ${formData.message || 'Sin mensaje adicional'}`
           <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
             <div>
               <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
-                Nombre del Apoderado *
+                <span>Nombre del Apoderado *</span>
                 <input
                   type="text"
                   required

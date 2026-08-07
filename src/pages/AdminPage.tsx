@@ -289,6 +289,7 @@ function LoginForm({ setPage }: LoginFormProps) {
         {/* Back link */}
         <div className="mt-6 text-center">
           <button
+            type="button"
             onClick={() => setPage('home')}
             className="cursor-pointer border-0 bg-transparent text-[0.82rem] text-slate-600 underline"
           >
@@ -552,6 +553,7 @@ function AwardsManager({ idToken }: AwardsManagerProps) {
                     </td>
                     <td className="p-3 whitespace-nowrap">
                       <button
+                        type="button"
                         id={`edit-award-${award.id}`}
                         onClick={() => startEdit(award)}
                         className="mr-1.5 cursor-pointer rounded-full border border-blue-200 bg-transparent px-2.5 py-[5px] text-[0.76rem] font-bold text-blue-700 transition-colors duration-150 hover:bg-blue-100"
@@ -559,6 +561,7 @@ function AwardsManager({ idToken }: AwardsManagerProps) {
                         ✎ Editar
                       </button>
                       <button
+                        type="button"
                         id={`delete-award-${award.id}`}
                         onClick={() => handleDelete(award.id, award.name)}
                         disabled={deleteLoadingId === award.id}
@@ -786,6 +789,7 @@ function AdminDashboard() {
               👤 <strong className="text-gold-400">{user?.email ?? user?.username ?? 'Admin'}</strong>
             </span>
             <button
+              type="button"
               id="admin-logout-btn"
               onClick={logout}
               className="cursor-pointer rounded-full border-b-4 border-crimson-700 bg-crimson-600 px-4 py-[9px] text-[0.82rem] font-bold tracking-wide text-white shadow-xl shadow-crimson-700/30 transition-all duration-300 hover:scale-[1.03] hover:bg-crimson-500 active:scale-95"
@@ -994,6 +998,7 @@ function AdminDashboard() {
                         </td>
                         <td className="p-3">
                           <button
+                            type='button'
                             id={`delete-event-${ev.id}`}
                             onClick={() => handleDeleteEvent(ev.id, ev.name)}
                             disabled={deleteEventId === ev.id}

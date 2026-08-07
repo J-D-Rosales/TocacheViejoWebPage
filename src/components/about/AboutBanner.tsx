@@ -1,7 +1,7 @@
 import type { Page } from '../../types'
 
 interface AboutBannerProps {
- setPage: (p: Page) => void
+ readonly setPage: (p: Page) => void
 }
 
 export function AboutBanner({ setPage }: AboutBannerProps) {

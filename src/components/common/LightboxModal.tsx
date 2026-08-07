@@ -3,10 +3,10 @@ import type { GalleryItem, GalleryMediaItem } from '../../types'
 
 interface LightboxModalProps {
   /** Metadatos del evento (título, año, descripción...) */
- galleryItem: GalleryItem
+  readonly galleryItem: GalleryItem
   /** Lista de medios navegables del evento */
- media: GalleryMediaItem[]
- onClose: () => void
+ readonly media: GalleryMediaItem[]
+ readonly onClose: () => void
 }
 
 export function LightboxModal({ galleryItem, media, onClose }: LightboxModalProps) {
@@ -50,15 +50,15 @@ export function LightboxModal({ galleryItem, media, onClose }: LightboxModalProp
   )
 
 return (
-  <div 
-    className="fixed inset-0 z-[2000] flex items-center justify-center p-6 bg-navy-900/90"
-    onClick={(e) => {
-      // Only close if clicking directly on the backdrop, not its children
-      if (e.target === e.currentTarget) {
-        onClose();
-      }
-    }}
-  >
+  <div className="fixed inset-0 z-[2000]">
+  <button
+    type="button"
+    aria-label="Cerrar modal"
+    className="absolute inset-0 h-full w-full bg-navy-900/90"
+    onClick={onClose}
+  />
+
+  <div className="relative z-10 flex h-full items-center justify-center p-6">
     {/* Layer 1: blurred copy of the same media covering the whole backdrop */}
     {current?.url && (
       <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -97,8 +97,12 @@ return (
               src={current.url}
               controls
               autoPlay
+              muted
               className="block h-full w-full object-contain"
-            />
+              
+            >
+            </video>
+            
           ) : (
             <img
               key={currentKey}
@@ -173,5 +177,7 @@ return (
       </button>
     </div>
   </div>
+</div>
+  
 )
 }

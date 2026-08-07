@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.js text encoding=UTF-8
+*.jsx text encoding=UTF-8
+*.ts text encoding=UTF-8
+*.tsx text encoding=UTF-8
+*.json text encoding=UTF-8
+*.css text encoding=UTF-8
