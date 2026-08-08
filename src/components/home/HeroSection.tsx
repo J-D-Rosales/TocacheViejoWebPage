@@ -1,5 +1,6 @@
 import type { Page } from '../../types'
 import { statsData } from '../../data/schoolData'
+import TVEscuela from '../../assets/TocacheViejoEscuela.webp'
 
 interface HeroSectionProps {
   setPage: (p: Page) => void
@@ -9,7 +10,7 @@ export function HeroSection({ setPage }: HeroSectionProps) {
   return (
     <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-navy-900">
       <img
-        src="./src/assets/TocacheViejoEscuela.webp"
+        src={TVEscuela}
         alt="TocacheViejo escuela"
         className="absolute inset-0 h-full w-full object-cover opacity-100"
       />

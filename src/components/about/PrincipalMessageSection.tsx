@@ -1,3 +1,5 @@
+import Cresencia from '../../assets/DIrectoraCrisWeb.webp'
+
 export function PrincipalMessageSection() {
   return (
     <section className="bg-white py-[clamp(60px,8vw,96px)]">
@@ -7,7 +9,7 @@ export function PrincipalMessageSection() {
           <div className="relative mx-auto w-full max-w-[420px]">
             <div className="aspect-[3/4] overflow-hidden rounded-3xl bg-blue-100 shadow-xl shadow-navy-900/15">
               <img
-                src="src/assets/DIrectoraCrisWeb.webp"
+                src={Cresencia}
                 alt="Directora Cresencia Valeriana Rosales Fuentes"
                 className="block h-full w-full object-cover"
               />

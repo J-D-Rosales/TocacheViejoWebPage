@@ -104,7 +104,7 @@ ${formData.message || 'Sin mensaje adicional'}`
             </div>
             <div>
               <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
-                Correo Electrónico
+                <span>Correo Electrónico</span>
                 <input
                   type="email"
                   value={formData.email}
@@ -119,7 +119,7 @@ ${formData.message || 'Sin mensaje adicional'}`
           <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
             <div>
               <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
-                Teléfono / Celular
+                <span>Teléfono / Celular</span>
                 <input
                   type="tel"
                   value={formData.phone}
@@ -131,7 +131,7 @@ ${formData.message || 'Sin mensaje adicional'}`
             </div>
             <div>
               <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
-                Grado de Interés
+                <span>Grado de Interés</span>
                 <select
                   value={formData.gradeLevel}
                   onChange={(e) => setFormData({ ...formData, gradeLevel: e.target.value as any })}
@@ -151,7 +151,7 @@ ${formData.message || 'Sin mensaje adicional'}`
 
           <div>
             <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
-              Nombre del Estudiante
+              <span>Nombre del Estudiante</span>
               <input
                 type="text"
                 value={formData.studentName}
@@ -164,7 +164,7 @@ ${formData.message || 'Sin mensaje adicional'}`
 
           <div>
             <label className="mb-1.5 block text-[0.86rem] font-extrabold tracking-wide text-navy-800">
-              Mensaje o Consultas Específicas
+              <span>Mensaje o Consultas Específicas</span>
               <textarea
                 rows={4}
                 value={formData.message}
@@ -179,7 +179,7 @@ ${formData.message || 'Sin mensaje adicional'}`
             type="submit"
             className="cursor-pointer self-start rounded-full border-b-4 border-crimson-700 bg-crimson-600 px-7 py-4 text-[0.95rem] font-extrabold uppercase tracking-[0.06em] text-white shadow-xl shadow-crimson-700/30 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:from-crimson-500 hover:to-crimson-600 active:scale-95"
           >
-            Enviar Consulta por WhatsApp →
+           Enviar Consulta por WhatsApp →
           </button>
         </form>
       )}

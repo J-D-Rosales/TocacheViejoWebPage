@@ -7,6 +7,7 @@ import { HomePage } from './pages/HomePage'
 import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
 import { AdminPage } from './pages/AdminPage'
+import logoTV from './assets/TocacheViejoLogo.webp'
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
@@ -34,7 +35,7 @@ export default function App() {
           }`}
         >
           <img
-            src="./src/assets/TocacheViejoLogo.webp"
+            src={logoTV}
             alt="Logo Institución Educativa Tocache Viejo"
             className="h-24 w-24 animate-bounce object-cover drop-shadow-xl" 
           />

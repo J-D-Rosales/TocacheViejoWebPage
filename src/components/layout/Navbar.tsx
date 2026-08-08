@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import type { Page } from '../../types'
+import logoTV from '../../assets/TocacheViejoLogo.webp'
 
 interface NavbarProps {
   currentPage: Page
@@ -53,7 +54,7 @@ export function Navbar({ currentPage, setPage }: NavbarProps) {
           className="flex shrink-0 cursor-pointer items-center gap-3 border-0 bg-transparent p-0"
         >
           <div className="flex h-[42px] w-[42px] items-center justify-center rounded-2xl border-b-4 hover:scale-110 active:scale-95">
-            <img src="./src/assets/TocacheViejoLogo.webp" alt="Logo" />
+            <img src={logoTV} alt="Logo" />
           </div>
           <div className="text-left">
             <div className="font-serif text-[1rem] font-bold leading-[1.2] text-white">
